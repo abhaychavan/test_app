@@ -1,0 +1,106 @@
+<!doctype html>
+<html ng-app="testAppApp">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+      
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-controller="TaskController">
+    <button ng-click="showAdd();">Add Task</button> 
+<!--Add New Task Form-->
+    <div ng-show="showAddForm">
+        <h1 align="center">Add Task Form</h1>
+    <form name="form" class="addFormClass" ng-submit="saveTask()">
+        
+    <label><span>Date</span></label> 
+       <input type="text" placeholder="Enter Date" name="date" ng-model="newtask.date" required/></br>
+    <label><span>Task</span></label> 
+      <input type="text" placeholder="Enter Task" name="task" ng-model="newtask.task" required/></br>
+       <input type="hidden" ng-model="newtask.id"/>
+     <span><button type="submit">Submit</button></span>
+   </form>
+   </div>
+
+
+<!--Showing array in table format-->
+<div ng-show="showList" class="listClass">
+      
+  <h1 align="center">List Of Task To Do</h1>
+  <table border="1" align="center">
+   <thead>
+  <tr>
+    <th>Date</th>
+    <th>Task</th>
+    <th></th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="arr in array">
+    <td>{{ arr.date }}</td>
+    <td>{{ arr.task }}</td>
+    <td>
+        <button ng-click="edit(arr.id)">Edit</button>
+        <button ng-click="delete(arr.id)">Delete</button>
+    </td>
+</tr>
+</tbody>
+</table>    
+</div>
+
+
+<!--Edit Task Form-->
+<div ng-show="showEdit">
+    <h1 align="center">Edit Form</h1>
+    <form class="editTaskClass" ng-submit="updateTask()">
+        <label><span>Date</span></label>
+        <input type="text" id="date" ng-model="array.date" required></br>
+        <label><span>Task</span></label>
+        <input type="text" id="task" ng-model="array.task" required><br>
+         <span><button type="submit">Submit</button></span>
+    </form>
+</div>
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+      
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
